@@ -30,14 +30,14 @@ sub new {
     $default_http_client->timeout($timeout);
     $self->{http_client} = $opts{http_client} || $default_http_client;
 
-    $self->{EmailVerify} = Mslm::EmailVerify->new(
+    $self->{email_verify} = Mslm::EmailVerify->new(
         $self->{api_key},
         http_client => $self->{http_client},
         base_url    => $self->{base_url},
         user_agent  => $self->{user_agent},
         api_key     => $self->{api_key}
     );
-    $self->{OTP} = Mslm::OTP->new(
+    $self->{otp} = Mslm::OTP->new(
         $self->{api_key},
         http_client => $self->{http_client},
         base_url    => $self->{base_url},
@@ -51,12 +51,12 @@ sub new {
 
 sub email_verify {
     my ($self) = @_;
-    return $self->{EmailVerify};
+    return $self->{email_verify};
 }
 
 sub otp {
     my ($self) = @_;
-    return $self->{OTP};
+    return $self->{otp};
 }
 
 sub set_base_url {
