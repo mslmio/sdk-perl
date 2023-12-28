@@ -208,7 +208,7 @@ Sets the API key for authentication.
 
 =head1 AUTHOR
 
-Abu Usama, C<< <usamaliaqat5846@gmail.com> >>
+Mslm, C<< <usama.liaqat@mslm.io> >>
 
 =head1 COPYRIGHT AND LICENSE
 

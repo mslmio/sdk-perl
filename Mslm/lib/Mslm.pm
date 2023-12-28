@@ -217,7 +217,7 @@ If you have a web site set up for your module, mention it here.
 
 =head1 AUTHOR
 
-Abu Usama, C<< <usamaliaqat5846@gmail.com> >>
+Mslm, C<< <usama.liaqat@mslm.io> >>
 
 =head1 COPYRIGHT AND LICENSE
 
