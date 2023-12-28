@@ -63,29 +63,29 @@ sub set_base_url {
     my ( $self, $base_url_str ) = @_;
     my $base_url = URI->new($base_url_str);
     $self->{base_url} = $base_url;
-    $self->{EmailVerify}->set_base_url($base_url);
-    $self->{OTP}->set_base_url($base_url);
+    $self->{email_verify}->set_base_url($base_url);
+    $self->{otp}->set_base_url($base_url);
 }
 
 sub set_http_client {
     my ( $self, $http_client ) = @_;
     $self->{http_client} = $http_client;
-    $self->{EmailVerify}->set_http_client($http_client);
-    $self->{OTP}->set_http_client($http_client);
+    $self->{email_verify}->set_http_client($http_client);
+    $self->{otp}->set_http_client($http_client);
 }
 
 sub set_user_agent {
     my ( $self, $user_agent ) = @_;
     $self->{user_agent} = $user_agent;
-    $self->{EmailVerify}->set_user_agent($user_agent);
-    $self->{OTP}->set_user_agent($user_agent);
+    $self->{email_verify}->set_user_agent($user_agent);
+    $self->{otp}->set_user_agent($user_agent);
 }
 
 sub set_api_key {
     my ( $self, $api_key ) = @_;
     $self->{api_key} = $api_key;
-    $self->{EmailVerify}->set_api_key($api_key);
-    $self->{OTP}->set_api_key($api_key);
+    $self->{email_verify}->set_api_key($api_key);
+    $self->{otp}->set_api_key($api_key);
 }
 
 
@@ -113,10 +113,10 @@ Mslm - The official Perl Library for Mslm APIs. Mslm focuses on producing world-
   my $mslm = Mslm->new($api_key, %opts);
 
   # Access Email Verification functionality
-  my $email_verifier = $mslm->EmailVerify();
+  my $email_verifier = $mslm->email_verify();
 
   # Access OTP functionality
-  my $otp_handler = $mslm->OTP();
+  my $otp_handler = $mslm->otp();
 
 =head1 DESCRIPTION
 
