@@ -23,6 +23,8 @@ jobs:
           cd Mslm
           cpanm Test::More ExtUtils::MakeMaker LWP::UserAgent JSON URI Exporter
           perl Makefile.PL && make test && make distcheck && make dist
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
       
       - name: Upload to CPAN
         run: |
