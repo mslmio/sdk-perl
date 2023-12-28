@@ -19,6 +19,7 @@ sub new {
     $self->{base_url}   = URI->new($base_url);
     $self->{api_key}    = $access_key;
     $self->{user_agent} = $user_agent;
+    $self->{timeout} = $timeout;
     my $default_http_client = LWP::UserAgent->new;
     $default_http_client->ssl_opts( 'verify_hostname' => 0 );
     $default_http_client->default_headers(
@@ -35,14 +36,14 @@ sub new {
         http_client => $self->{http_client},
         base_url    => $self->{base_url},
         user_agent  => $self->{user_agent},
-        api_key     => $self->{api_key}
+        timeout     => $self->{timeout}
     );
     $self->{otp} = Mslm::OTP->new(
         $self->{api_key},
         http_client => $self->{http_client},
         base_url    => $self->{base_url},
         user_agent  => $self->{user_agent},
-        api_key     => $self->{api_key}
+        timeout     => $self->{timeout}
     );
 
     bless $self, $class;
@@ -134,7 +135,7 @@ Creates a new instance of Mslm.
 
 =item * C<$api_key> (string) - The API key required for authentication.
 
-=item * C<%opts> (hash) - Optional parameters. You can pass in the following opts: C<base_url>, C<user_agent>, C<api_key>, and C<http_client>. These settings can also be done via the setter functions named: C<set_base_url>, C<set_user_agent>, C<set_api_key>, C<set_http_client>.
+=item * C<%opts> (hash) - Optional parameters. You can pass in the following opts: C<base_url>, C<user_agent>, C<timeout>, and C<http_client>. These settings can also be done via the setter functions named: C<set_base_url>, C<set_user_agent>, C<set_api_key>, C<set_http_client>.
 
 =back
 
