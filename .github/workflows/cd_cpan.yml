@@ -1,0 +1,35 @@
+name: Release package to CPAN via Pause
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Perl environment
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: '5.34'
+          install-modules: 'CPAN::Uploader'
+      
+      - name: Test and build
+        run: |
+          cd Mslm
+          cpanm Test::More ExtUtils::MakeMaker LWP::UserAgent JSON URI Exporter
+          perl Makefile.PL && make test && make distcheck && make dist
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+      
+      - name: Upload to CPAN
+        run: |
+          cd Mslm
+          cpan-upload -v -u $USERNAME -p $PASSWORD *.tar.gz
+        env:
+          USERNAME: ${{ secrets.PAUSE_USERNAME }}
+          PASSWORD: ${{ secrets.PAUSE_PASSWORD }}
