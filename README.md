@@ -110,7 +110,7 @@ The `new` method of each client accepts an optional `%opts` parameter, which can
 $mslm = Mslm->new($api_key, (timeout => 180, base_url => "https://example.com"));
 ```
 
-The `single_verify` method of EmailVerify sub-module, accepts an additional option; `disable_url_encoding`, that can be set to `1` (TRUE), if the email address you are providing is already url encoded. URL encoding is enabled by default.
+The `single_verify` method of EmailVerify sub-module, can accept an additional option; `disable_url_encoding`, that can be set to `1` (TRUE), if the email address you are providing is already url encoded. URL encoding is enabled by default.
 
 ```perl
 my $email_verifier = Mslm::EmailVerify->new($api_key);
