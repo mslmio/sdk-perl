@@ -14,14 +14,14 @@ get an API key before continuing.
 
 ## Installation
 
-### Using cpan/cpanm
+### Via cpan or cpanm
 
 `Mslm` module can be installed using `cpan` or `cpanm`:
 ```bash
 cpanm Mslm
 ```
 
-### From source
+### Via source
 
 If you'd like to install from source (not necessary for use in your application), download the source and run the following commands within the Mslm directory:
 ```bash
