@@ -14,9 +14,10 @@ get an API key before continuing.
 
 ## Installation
 
-### Via cpan or cpanm
+### Via CPAN or CPANMINUS
 
 `Mslm` module can be installed using `cpan` or `cpanm`:
+
 ```bash
 cpanm Mslm
 ```
@@ -24,6 +25,7 @@ cpanm Mslm
 ### Via source
 
 If you'd like to install from source (not necessary for use in your application), download the source and run the following commands within the Mslm directory:
+
 ```bash
 perl Makefile.PL
 make
@@ -36,7 +38,7 @@ make install
 ```perl
 use Mslm;
 
-my $api_key = "abcd1234";
+my $api_key = "YOUR_API_KEY";
 my $mslm = Mslm->new($api_key);
 
 # Access EmailVerify functionality
@@ -67,7 +69,7 @@ You can install and use sub-modules that are available under the Mslm module.
 ```perl
 use Mslm::EmailVerify;
 
-my $api_key = "acbd1234";
+my $api_key = "YOUR_API_KEY";
 my $email_verifier = Mslm::EmailVerify->new($api_key);
 
 # Single email verification
@@ -79,7 +81,7 @@ my $verification_result = $email_verifier->single_verify('example@example.com');
 ```perl
 use Mslm::OTP;
 
-my $api_key = "acbd1234";
+my $api_key = "YOUR_API_KEY";
 my $otp = Mslm::OTP->new($api_key);
 
 # Sending OTP
@@ -110,7 +112,7 @@ The `new` method of each client accepts an optional `%opts` parameter, which can
 $mslm = Mslm->new($api_key, (timeout => 180, base_url => "https://example.com"));
 ```
 
-The `single_verify` method of EmailVerify sub-module, can accept an additional option; `disable_url_encoding`, that can be set to `1` (TRUE), if the email address you are providing is already url encoded. URL encoding is enabled by default.
+The `single_verify` method of EmailVerify sub-module, can accept an additional option; `disable_url_encoding`, that can be set to `1` (TRUE), if the email address you are providing is already URL encoded. URL encoding is enabled by default.
 
 ```perl
 my $email_verifier = Mslm::EmailVerify->new($api_key);
@@ -121,7 +123,7 @@ Methods `set_base_url`, `set_http_client`, `set_user_agent`, and `set_api_key` c
 
 ```perl
 $mslm = Mslm->new($api_key);
-$mslm->set_api_key("new_api_key");
+$mslm->set_api_key("YOUR_NEW_API_KEY");
 ```
 
 
