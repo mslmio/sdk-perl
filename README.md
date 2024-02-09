@@ -124,7 +124,6 @@ $mslm = Mslm->new($api_key);
 $mslm->set_api_key("YOUR_NEW_API_KEY");
 ```
 
-
 ## Additional Resources
 
 See the official [API Reference Documentation](https://mslm.io/docs/api) for
