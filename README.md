@@ -4,7 +4,7 @@ The official Perl SDK for Mslm APIs.
 
 ## Requirements
 
-...
+Perl version 5.006 or above.
 
 ## Authentication
 
@@ -14,11 +14,115 @@ get an API key before continuing.
 
 ## Installation
 
-...
+### Via CPAN or CPANMINUS
+
+`Mslm` module can be installed using `cpan` or `cpanm`:
+
+```bash
+cpanm Mslm
+```
+
+### Via source
+
+If you'd like to install from source (not necessary for use in your application), download the source and run the following commands within the Mslm directory:
+
+```bash
+perl Makefile.PL
+make
+make test
+make install
+```
 
 ## Usage
 
-...
+```perl
+use Mslm;
+
+my $api_key = "YOUR_API_KEY";
+my $mslm = Mslm->new($api_key);
+
+# Access EmailVerify functionality
+my $sv_details = $mslm->email_verify->single_verify('support@mslm.io');
+
+# Access OTP functionality. (OTP service is currently available for Pakistan only)
+# Sending OTP
+my $response = $mslm->otp->send({
+	phone          => '03001234567',
+	tmpl_sms       => 'Your verification code is: <otp>',
+	token_len      => 6,
+	expire_seconds => 60
+});
+# Verifying OTP token
+my $verification_result = $mslm->otp->verify({
+	phone   => '03001234567',
+	token   => '123456',
+	consume => \1
+});
+```
+
+You can install and use sub-modules that are available under the Mslm module individually.
+
+### Using EmailVerify sub-module
+
+```perl
+use Mslm::EmailVerify;
+
+my $api_key = "YOUR_API_KEY";
+my $email_verifier = Mslm::EmailVerify->new($api_key);
+
+# Single email verification
+my $verification_result = $email_verifier->single_verify('example@example.com');
+```
+
+### Using OTP sub-module
+
+```perl
+use Mslm::OTP;
+
+my $api_key = "YOUR_API_KEY";
+my $otp = Mslm::OTP->new($api_key);
+
+# Sending OTP
+my $response = $otp->send({
+	phone          => '03001234567',
+	tmpl_sms       => 'Your verification code is: <otp>',
+	token_len      => 6,
+	expire_seconds => 60
+});
+
+# Verifying OTP token
+my $verification_result = $otp->verify({
+	phone   => '1234567890',
+	token   => '123456',
+	consume => \1
+});
+```
+
+### Configuration
+
+The `new` method of each client accepts an optional `%opts` parameter, which can be used to override the `base_url`, `user_agent`, `timeout`, and `http_client`; where `http_client` can only be a `LWP::UserAgent`.
+* Default base_url: 'https://mslm.io'
+* Default user_agent: 'mslm/perl/1.0'
+* Default request timeout: 120 seconds
+* Default http_client: LWP::UserAgent
+
+```perl
+$mslm = Mslm->new($api_key, (timeout => 180, base_url => "https://example.com"));
+```
+
+The `single_verify` method of EmailVerify sub-module, can accept an additional option; `disable_url_encoding`, that can be set to `1` (TRUE), if the email address you are providing is already URL encoded. URL encoding is enabled by default.
+
+```perl
+my $email_verifier = Mslm::EmailVerify->new($api_key);
+my $sv_details = $mslm->email_verify->single_verify('support@mslm.io', (disable_url_encoding => '1'));
+```
+
+Methods `set_base_url`, `set_http_client`, `set_user_agent`, and `set_api_key` can also be used for configuration.
+
+```perl
+$mslm = Mslm->new($api_key);
+$mslm->set_api_key("YOUR_NEW_API_KEY");
+```
 
 ## Additional Resources
 
