@@ -33,7 +33,7 @@ make test
 make install
 ```
 
-## Basic Usage
+## Usage
 
 ```perl
 use Mslm;
@@ -60,9 +60,7 @@ my $verification_result = $mslm->otp->verify({
 });
 ```
 
-## Advanced Usage
-
-You can install and use sub-modules that are available under the Mslm module.
+You can install and use sub-modules that are available under the Mslm module individually.
 
 ### Using EmailVerify sub-module
 
